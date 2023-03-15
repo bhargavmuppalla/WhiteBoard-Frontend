@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/auth/style.css","webpack://src/components/Forms/index.css","webpack://src/pages/RoomPage/index.css"],"names":[],"mappings":"AAAA,MACE,WACF,CCFA,UACE,YACF,CCFA,YACE,YACF","file":"main.420cd61e.chunk.css","sourcesContent":["input {\n  width: 400px;\n}\n",".form-box {\n  height: 400px;\n}\n",".canvas-box {\n  height: 500px;\n}\n"]}
