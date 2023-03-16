@@ -26,7 +26,7 @@ import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
-const server = 'https://whiteboard-api.onrender.com';
+const server = 'https://whiteboard-api.onrender.com:8080';
 // const server = 'http://localhost:8080';
 const connectionOptions = {
   'force new connection': true,
