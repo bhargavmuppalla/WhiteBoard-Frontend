@@ -4,7 +4,7 @@ import { LOGOUT } from '../actions/types';
 
 // Create an instance of axios
 const api = axios.create({
-  baseURL: 'https://whiteboard-6u7m.onrender.com/api',
+  baseURL: 'https://whiteboard-api.onrender.com/api',
   headers: {
     'Content-Type': 'application/json'
   }
