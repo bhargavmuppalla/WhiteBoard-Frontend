@@ -46,7 +46,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://whiteboard-api.onrender.com",
+  "proxy": "http://localhost:5001",
   "devDependencies": {
     "@craco/craco": "^6.4.5"
   }
