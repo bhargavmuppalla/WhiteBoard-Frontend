@@ -143,7 +143,6 @@ const RoomPage = ({ auth, user, socket, users }) => {
         </div>
       )}
 
-      {user?.presenter && (
         <div className="row">
           <div className="mx-5 col-md-3">
             <div className="form-check form-check-inline">
@@ -222,7 +221,7 @@ const RoomPage = ({ auth, user, socket, users }) => {
             </button>
           </div>
         </div>
-      )}
+      )
       <div className="col-md-10 mx-auto mt-4 canvas-box">
         <WhiteBoard
           canvasRef={canvasRef}
