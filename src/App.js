@@ -26,7 +26,7 @@ import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
-const server = 'https://whiteboard-api.onrender.com:8080';
+const server = 'http://localhost:8080';
 const connectionOptions = {
   'force new connection': true,
   reconnectionAttempts: 'Infinity',
@@ -64,20 +64,10 @@ const App = () => {
 
   const uuid = () => {
     let S4 = () => {
-      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+      // return (((1 + Math.random()) * 0x10000) | 0).toString(10).substring(1);
+      return Math.floor(Math.random() * 9000) + 1000;
     };
     return (
-      S4() +
-      S4() +
-      '-' +
-      S4() +
-      '-' +
-      S4() +
-      '-' +
-      S4() +
-      '-' +
-      S4() +
-      S4() +
       S4()
     );
   };
