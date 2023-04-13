@@ -17,6 +17,7 @@ const RoomPage = ({ auth, user, socket, users }) => {
   const [history, setHistory] = useState([]);
   const [openedUserTab, setOpenedUserTab] = useState(false);
   const [connectToSelf, setConnectToSelf] = useState(true);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     if (auth.user && auth.user.role === 'Student') {
@@ -50,7 +51,18 @@ const RoomPage = ({ auth, user, socket, users }) => {
     setHistory((prevHistory) => prevHistory.slice(0, prevHistory.length - 1));
   };
 
-  const onItemClick = (key, socketId) => {
+  const handleDownload = () => {
+    const canvas = canvasRef.current;
+    const link = document.createElement('a');
+    link.download = name+' whiteboard.png';
+    link.href = canvas.toDataURL('image/png').replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const onItemClick = (key, socketId, name) => {
+    setName(name);
     if (key == 'me') {
       setConnectToSelf(true);
     } else {
@@ -107,7 +119,7 @@ const RoomPage = ({ auth, user, socket, users }) => {
                   key={usr.socketId}
                   id={usr.socketId}
                   className="btn btn-light btn-block w-100 mt-5"
-                  onClick={() => onItemClick(usr.userId, usr.socketId)}
+                  onClick={() => onItemClick(usr.userId, usr.socketId, usr.name)}
                 >
                   {' '}
                   <span>
@@ -143,6 +155,7 @@ const RoomPage = ({ auth, user, socket, users }) => {
         </div>
       )}
 
+      
         <div className="row">
           <div className="mx-5 col-md-3">
             <div className="form-check form-check-inline">
@@ -199,7 +212,7 @@ const RoomPage = ({ auth, user, socket, users }) => {
               />
             </div>
           </div>
-          <div className="col-md-3 d-flex gap-2">
+          <div className="col-md-2 d-flex gap-2">
             <button
               className="btn btn-primary mt-1"
               disabled={elements.length === 0}
@@ -220,8 +233,11 @@ const RoomPage = ({ auth, user, socket, users }) => {
               Clear Canvas
             </button>
           </div>
+          <div className='col-md-1'>
+            <button className="btn btn-primary" onClick={handleDownload}>Download</button>
+          </div>
         </div>
-      )
+
       <div className="col-md-10 mx-auto mt-4 canvas-box">
         <WhiteBoard
           canvasRef={canvasRef}
