@@ -57,6 +57,19 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    // Retrieve saved users state from localStorage
+    const savedUsers = JSON.parse(localStorage.getItem('users'));
+    if (savedUsers !== null) {
+      setUsers(savedUsers);
+    }
+  }, []);
+  
+  useEffect(() => {
+    // Save the current users to localStorage whenever it changes
+    localStorage.setItem('users', JSON.stringify(users));
+  }, [users]);
+
+  useEffect(() => {
     socket.on('allUsers', (data) => {
       setUsers(data);
     });
