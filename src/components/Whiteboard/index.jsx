@@ -28,7 +28,6 @@ const WhiteBoard = ({
     socket.on('whiteBoardDataResponse', (data) => {
       if (auth.user.role === 'Student' || !connectToSelf) {
         setImg(data.imgURL);
-        localStorage.setItem('student_image',data.imgURL);
       }
 
       if (
@@ -49,11 +48,6 @@ const WhiteBoard = ({
       }
     });
   }, [connectToSelf]);
-
-  useEffect(() => {
-    const image = localStorage.getItem('student_image');
-    setImg(image);
-  }, []);
 
   const drawImageOnCanvas = (url) => {
     if (ctxRef && ctxRef.current) {
@@ -82,7 +76,7 @@ const WhiteBoard = ({
       ctx.lineCap = 'round';
       console.log('TV CTX InIt', ctx);
       ctxRef.current = ctx;
-  }
+    }
   }, [canvasRef?.current]);
 
   useEffect(() => {
@@ -106,7 +100,6 @@ const WhiteBoard = ({
     }
   }, [color]);
 
-
   useLayoutEffect(() => {
     if (canvasRef && canvasRef.current) {
       drawElements();
@@ -118,26 +111,6 @@ const WhiteBoard = ({
         socket.emit('whiteboardData', data);
       }
     }
-  }, [elements, otherElements]);
-
-  useEffect(() =>{
-    // Retrieve elements and otherElements from localStorage
-  const storedElements = localStorage.getItem('whiteboard_elements');
-  const storedOtherElements = localStorage.getItem('whiteboard_otherElements');
-
-  if (storedElements) {
-    setElements(JSON.parse(storedElements));
-  }
-
-  if (storedOtherElements) {
-    setOtherElements(JSON.parse(storedOtherElements));
-  }
-  }, []);
-
-  useEffect(()=>{
-    // Save elements and otherElements to localStorage
-    localStorage.setItem('whiteboard_elements', JSON.stringify(elements));
-    localStorage.setItem('whiteboard_otherElements', JSON.stringify(otherElements));
   }, [elements, otherElements]);
 
   const drawElements = () => {

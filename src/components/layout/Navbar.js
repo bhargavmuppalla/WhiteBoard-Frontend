@@ -5,18 +5,10 @@ import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 
 const Navbar = ({ auth, logout }) => {
-
-  const handleLogout = () => {
-    localStorage.removeItem('whiteboard_elements');
-    localStorage.removeItem('whiteboard_otherElements');
-    localStorage.removeItem('student_image');
-    logout();
-  };
-
   const authLinks = (
     <ul>
       <li>
-        <a onClick={handleLogout} href="#!">
+        <a onClick={logout} href="#!">
           <i className="fas fa-sign-out-alt" />{' '}
           <span className="hide-sm">Logout</span>
         </a>
