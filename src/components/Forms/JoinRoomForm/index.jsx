@@ -22,6 +22,11 @@ const JoinRoomForm = ({ uuid, socket, setUser }) => {
     socket.emit("userJoined", roomData);
   };
 
+  const handleRoomIdChange = (e) => {
+    // Use parseInt to convert the input value to a number
+    setRoomId(parseInt(e.target.value, 10));
+  };
+
   return (
     <form className="form col-md-12 mt-5">
       <div className="form-group">
@@ -39,7 +44,7 @@ const JoinRoomForm = ({ uuid, socket, setUser }) => {
           className="form-control my-2"
           placeholder="Enter room code"
           value={roomId}
-          onChange={(e) => setRoomId(e.target.value)}
+          onChange={handleRoomIdChange}
         />
       </div>
       <button
